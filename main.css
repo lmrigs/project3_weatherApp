@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Tahoma, sans-serif;
+}
+
+.body-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    background: linear-gradient(#8db0e4, #7caf96);
+    text-align: center;
+    margin: 0.5rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.header p {
+    margin: -0.5rem 0 0 0;
+}
+
+.location {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+h2#location-timezone, h2#degree-num, div#weather-description {
+    font-size: 1.5rem;
+}
+
+
+.temperature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.degree {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.degree span {
+    font-size: 1rem;
+    margin-left: 0.2rem;
+}
+
+div.dataSet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1rem 1.5rem;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+div#weather-description {
+    padding: 1rem;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: 300;
+}
+
+h2 {
+    font-weight: normal;
+}
+
+p {
+    font-size: 2.5rem;
+}
+
+div.description-instruction {
+    margin-top: -2rem;
+}
+
