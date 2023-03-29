@@ -1,6 +1,7 @@
 window.addEventListener('load', () => {
     let long;
     let lat;
+    let latLong;
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -12,7 +13,6 @@ window.addEventListener('load', () => {
             console.log(latLong);
 
             const api = `http://api.weatherapi.com/v1/forecast.json?key=f037a411e06c4d5a99b184923231402&q=${latLong}&days=1&aqi=no&alerts=no`;
-            console.log(api);
 
             fetch(api)
                 .then(response => response.json())
@@ -50,38 +50,44 @@ window.addEventListener('load', () => {
                     });
 
 
-                    // Logic for showing condition suggestions for dog walking
-                    //Insert 'description' from API into desc. Add line break and add instruction. 
+
+                    // Insert the weather description from the API into the page. 
                     const desc = document.getElementById("weather-description");
                     desc.innerHTML = description;
 
-                    const instruction = document.getElementById("walk-instruction");
 
-                    if (desc === "Light rain shower" ||
-                        desc === "Patchy light rain" ||
-                        desc === "Light rain" ||
-                        desc === "Patchy light drizzle" ||
-                        desc === "Light drizzle" ||
-                        desc === "Patchy rain possible" ||
-                        desc === "Cloudy" ||
-                        desc === "Overcast" ||
-                        desc === "Mist" && celsius > 0 || fah > 32) {
+                    // Add walking instruction based on description and tempertature conditions.
+                    const instruction = document.getElementById("walk-instruction");
+                    console.log(description + " this is the description", typeof description, description === "Sunny");
+
+
+                    if (description === "Light rain shower" && fah > 32 ||
+                        description === "Patchy light rain" && fah > 32 ||
+                        description === "Light rain" && fah > 32 ||
+                        description === "Patchy light drizzle" && fah > 32 ||
+                        description === "Light drizzle" && fah > 32 ||
+                        description === "Patchy rain possible" && fah > 32 ||
+                        description === "Cloudy" && fah > 32 ||
+                        description === "Overcast" && fah > 32 ||
+                        description === "Mist" && fah > 32) {
                         instruction.innerHTML = "Walk your pup but bring an umbrella!"
-                    } else if (desc === "Light snow showers" ||
-                        desc === "Moderate snow" ||
-                        desc === "Patchy moderate snow" ||
-                        desc === "Light snow" ||
-                        desc === "Patchy light snow" ||
-                        desc === "Patchy snow possible" && celsius > 0 || fah > 32) {
+                    } else if (description === "Light snow showers" && fah > 32 ||
+                        description === "Moderate snow" && fah > 32 ||
+                        description === "Patchy moderate snow" && fah > 32 ||
+                        description === "Light snow" && fah > 32 ||
+                        description === "Patchy light snow" && fah > 32 ||
+                        description === "Patchy snow possible" && fah > 32) {
                         instruction.innerHTML = "Walk your pup but bundle up!"
-                    } else if (desc === "sunny" && celsius > 0 || fah > 32) {
-                        instruction.innerHTML = "Walk your pup but bundle up!"
-                    } else if (desc === "sunny" && celsius > 10 || fah > 50) {
-                        instruction.innerHTML = "Get outside and walk your pup!"
-                    }
-                    else {
-                        instruction.innerHTML = "Stay inside and cuddle with your pup!"
-                    };
+                    } else
+                        if (description === "Sunny" && fah < 30) {
+                            instruction.innerHTML = "Walk your pup but bundle up!"
+                        } else
+                            if (description === "Sunny" && fah > 50) {
+                                instruction.innerHTML = "Get outside and walk your pup!"
+                            }
+                            else {
+                                instruction.innerHTML = "Stay inside and cuddle with your pup!"
+                            };
 
 
                 });

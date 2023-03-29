@@ -3,6 +3,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-family: Verdana, Tahoma, sans-serif;
+    height: 100vh;
 }
 
 .body-content {
@@ -13,7 +14,7 @@ body {
     gap: 2rem;
     background: linear-gradient(#8db0e4, #7caf96);
     text-align: center;
-    margin: 0.5rem;
+   
 }
 
 .header {
